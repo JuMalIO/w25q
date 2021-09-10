@@ -152,7 +152,7 @@ void W25Q_EraseBlock(uint32_t block)
 
   W25Q_CS_LOW();
 
-  W25Q_SPI_TransmitCommandAddress(W25Q_CMD_BE64, block * W25Q_BLOCK_SIZ);
+  W25Q_SPI_TransmitCommandAddress(W25Q_CMD_BE64, block * W25Q_BLOCK_SIZE);
 
   W25Q_CS_HIGH();
 
