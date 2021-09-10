@@ -1,4 +1,3 @@
-#include "w25q_utils.h"
 #include "w25q.h"
 #include "w25q_config.h"
 #include "utils.h"
