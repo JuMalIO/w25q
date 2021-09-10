@@ -1,5 +1,6 @@
 #include "w25q_utils.h"
 #include "w25q.h"
+#include "utils.h"
 
 #define W25Q_BUFFER_SIZE 64
 #define UINT16_T_SIZE sizeof(unit16_t)
@@ -104,7 +105,7 @@ void W25Q_IfNotEmptyErase(uint32_t address, uint16_t bytesToCheck)
     address += bytes;
     bytesToCheck -= bytes;
     bytes = MIN(W25Q_BUFFER_SIZE, bytesToCheck);
-  } while (bytesToCheck > 0)
+  } while (bytesToCheck > 0);
 }
 
 void W25Q_EraseWriteEntity(uint8_t* buffer, uint32_t fromSector, uint32_t toSector, uint16_t bytesToWrite)
