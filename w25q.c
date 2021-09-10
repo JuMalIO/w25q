@@ -1,6 +1,5 @@
 #include "w25q.h"
 #include "w25q_config.h"
-#include "utils.h"
 
 #define W25Q_CMD_WSR1           0x01  /* Write Status Register-1 */
 #define W25Q_CMD_PP             0x02  /* Page Program */
