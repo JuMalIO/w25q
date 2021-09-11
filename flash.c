@@ -9,7 +9,7 @@ void FLASH_Init(void)
 {
   W25Q_Init();
 }
-	
+
 uint16_t FLASH_ReadWord(uint32_t address)
 {
   uint16_t word;
@@ -66,12 +66,12 @@ void FLASH_EraseBytes(uint32_t address, uint16_t bytesToErase)
 
 void FLASH_IfNotEmptyErase(uint32_t address, uint16_t bytesToCheck)
 {
-  uint8_t	buffer[FLASH_BUFFER_SIZE];
+  uint8_t buffer[FLASH_BUFFER_SIZE];
   uint16_t bytes;
 
   do
   {
-		bytes = MIN(FLASH_BUFFER_SIZE, bytesToCheck);
+    bytes = MIN(FLASH_BUFFER_SIZE, bytesToCheck);
     W25Q_ReadBytes(buffer, address, bytes);
 
     for (uint16_t i = 0; i < bytes; i++)
