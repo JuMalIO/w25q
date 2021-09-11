@@ -66,11 +66,12 @@ void FLASH_EraseBytes(uint32_t address, uint16_t bytesToErase)
 
 void FLASH_IfNotEmptyErase(uint32_t address, uint16_t bytesToCheck)
 {
-  uint16_t bytes = MIN(FLASH_BUFFER_SIZE, bytesToCheck);
-  uint8_t	buffer[bytes];
+  uint8_t	buffer[FLASH_BUFFER_SIZE];
+  uint16_t bytes;
 
   do
   {
+		bytes = MIN(FLASH_BUFFER_SIZE, bytesToCheck);
     W25Q_ReadBytes(buffer, address, bytes);
 
     for (uint16_t i = 0; i < bytes; i++)
@@ -84,7 +85,6 @@ void FLASH_IfNotEmptyErase(uint32_t address, uint16_t bytesToCheck)
 
     address += bytes;
     bytesToCheck -= bytes;
-    bytes = MIN(FLASH_BUFFER_SIZE, bytesToCheck);
   } while (bytesToCheck > 0);
 }
 
