@@ -23,7 +23,7 @@
 
 extern SPI_HandleTypeDef W25Q_SPI;
 
-static uint32_t BlockCount;
+static uint16_t BlockCount;
 
 uint8_t W25Q_SPI_TransmitReceive(uint8_t data)
 {
@@ -101,7 +101,7 @@ uint32_t W25Q_ReadId(void)
   return (id0 << 16) | (id1 << 8) | id2;
 }
 
-uint32_t ReadBlockCount(void)
+uint16_t ReadBlockCount(void)
 {
   uint32_t id = W25Q_ReadId();
 
@@ -132,7 +132,7 @@ uint32_t ReadBlockCount(void)
   }
 }
 
-void W25Q_EraseSector(uint32_t sector)
+void W25Q_EraseSector(uint16_t sector)
 {
   W25Q_WriteEnable();
 
@@ -145,7 +145,7 @@ void W25Q_EraseSector(uint32_t sector)
   W25Q_WaitForWriteEnd();
 }
 
-void W25Q_EraseBlock(uint32_t block)
+void W25Q_EraseBlock(uint16_t block)
 {
   W25Q_WriteEnable();
 
@@ -182,7 +182,7 @@ void W25Q_ReadBytes(uint8_t *buffer, uint32_t address, uint16_t bytesToRead)
   W25Q_CS_HIGH();
 }
 
-uint32_t W25Q_WritePage(uint8_t *buffer, uint32_t page, uint32_t offsetBytes, uint32_t bytesToWrite)
+uint16_t W25Q_WritePage(uint8_t *buffer, uint32_t page, uint16_t offsetBytes, uint16_t bytesToWrite)
 {
   if (bytesToWrite + offsetBytes > W25Q_PAGE_SIZE)
   {
@@ -203,11 +203,11 @@ uint32_t W25Q_WritePage(uint8_t *buffer, uint32_t page, uint32_t offsetBytes, ui
   return bytesToWrite;
 }
 
-void W25Q_WriteBytes(uint8_t *buffer, uint32_t address, uint32_t bytesToWrite)
+void W25Q_WriteBytes(uint8_t *buffer, uint32_t address, uint16_t bytesToWrite)
 {
-  uint32_t bytesWrote;
+  uint16_t bytesWrote;
+  uint16_t offset = address % W25Q_PAGE_SIZE;
   uint32_t page = address / W25Q_PAGE_SIZE;
-  uint32_t offset = address % W25Q_PAGE_SIZE;
 
   do
   {

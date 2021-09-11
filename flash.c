@@ -22,7 +22,7 @@ void FLASH_WriteWord(uint16_t word, uint32_t address)
   W25Q_WriteBytes((uint8_t*)&word, address, FLASH_UINT16_T_SIZE);
 }
 
-void FLASH_ReadEntity(uint8_t* buffer, uint32_t fromSector, uint32_t toSector, uint16_t bytesToRead)
+void FLASH_ReadEntity(uint8_t* buffer, uint16_t fromSector, uint16_t toSector, uint16_t bytesToRead)
 {
   uint16_t size;
   uint16_t lastSize = 0;
@@ -55,10 +55,10 @@ void FLASH_ReadEntity(uint8_t* buffer, uint32_t fromSector, uint32_t toSector, u
 
 void FLASH_EraseBytes(uint32_t address, uint16_t bytesToErase)
 {
-  uint32_t fromSector = address / W25Q_SECTOR_SIZE;
-  uint32_t toSector = (address + bytesToErase) / W25Q_SECTOR_SIZE;
+  uint16_t fromSector = address / W25Q_SECTOR_SIZE;
+  uint16_t toSector = (address + bytesToErase) / W25Q_SECTOR_SIZE;
 
-  for (uint32_t i = fromSector; i <= toSector; i++)
+  for (uint16_t i = fromSector; i <= toSector; i++)
   {
     W25Q_EraseSector(i);
   }
@@ -88,7 +88,7 @@ void FLASH_IfNotEmptyErase(uint32_t address, uint16_t bytesToCheck)
   } while (bytesToCheck > 0);
 }
 
-void FLASH_EraseWriteEntity(uint8_t* buffer, uint32_t fromSector, uint32_t toSector, uint16_t bytesToWrite)
+void FLASH_EraseWriteEntity(uint8_t* buffer, uint16_t fromSector, uint16_t toSector, uint16_t bytesToWrite)
 {
   uint16_t size;
   uint32_t fromAddress = fromSector * W25Q_SECTOR_SIZE;
