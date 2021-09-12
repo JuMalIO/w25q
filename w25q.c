@@ -1,25 +1,25 @@
 #include "w25q.h"
 #include "w25q_config.h"
 
-#define W25Q_CMD_WSR1				0x01	/* Write Status Register-1 */
-#define W25Q_CMD_PP					0x02	/* Page Program */
-#define W25Q_CMD_R					0x03	/* Read Data */
-#define W25Q_CMD_RSR1				0x05	/* Read Status Register-1 */
-#define W25Q_CMD_WE					0x06	/* Write Enable */
-#define W25Q_CMD_FR					0x0B	/* Fast Read */
-#define W25Q_CMD_SE					0x20	/* Sector Erase (4KB) */
-#define W25Q_CMD_BE32				0x52	/* Block Erase (32KB) */
-#define W25Q_CMD_RID				0x9F	/* JEDEC ID */
-#define W25Q_CMD_RPD				0xAB	/* Release Power-down */
-#define W25Q_CMD_PD					0xB9	/* Power-down */
-#define W25Q_CMD_CE					0xC7	/* Chip Erase */
-#define W25Q_CMD_BE64				0xD8	/* Block Erase (64KB) */
+#define W25Q_CMD_WSR1 0x01 /* Write Status Register-1 */
+#define W25Q_CMD_PP   0x02 /* Page Program */
+#define W25Q_CMD_R    0x03 /* Read Data */
+#define W25Q_CMD_RSR1 0x05 /* Read Status Register-1 */
+#define W25Q_CMD_WE   0x06 /* Write Enable */
+#define W25Q_CMD_FR   0x0B /* Fast Read */
+#define W25Q_CMD_SE   0x20 /* Sector Erase (4KB) */
+#define W25Q_CMD_BE32 0x52 /* Block Erase (32KB) */
+#define W25Q_CMD_RID  0x9F /* JEDEC ID */
+#define W25Q_CMD_RPD  0xAB /* Release Power-down */
+#define W25Q_CMD_PD   0xB9 /* Power-down */
+#define W25Q_CMD_CE   0xC7 /* Chip Erase */
+#define W25Q_CMD_BE64 0xD8 /* Block Erase (64KB) */
 
-#define W25Q_WIP_FLAG				0x01	/* Write In Progress */
-#define W25Q_DUMMY_BYTE			0xA5
+#define W25Q_WIP_FLAG 0x01 /* Write In Progress */
+#define W25Q_DUMMY_BYTE 0xA5
 
-#define W25Q_CS_LOW()				HAL_GPIO_WritePin(W25Q_CS_PORT, W25Q_CS_PIN, GPIO_PIN_RESET)
-#define W25Q_CS_HIGH()			HAL_GPIO_WritePin(W25Q_CS_PORT, W25Q_CS_PIN, GPIO_PIN_SET)
+#define W25Q_CS_LOW()  HAL_GPIO_WritePin(W25Q_CS_PORT, W25Q_CS_PIN, GPIO_PIN_RESET)
+#define W25Q_CS_HIGH() HAL_GPIO_WritePin(W25Q_CS_PORT, W25Q_CS_PIN, GPIO_PIN_SET)
 
 extern SPI_HandleTypeDef W25Q_SPI;
 

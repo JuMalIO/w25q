@@ -2,7 +2,7 @@
 #include "w25q.h"
 #include "utils.h"
 
-#define FLASH_BUFFER_SIZE	 64
+#define FLASH_BUFFER_SIZE 64
 #define FLASH_UINT16_T_SIZE sizeof(uint16_t)
 
 void FLASH_Init(void)

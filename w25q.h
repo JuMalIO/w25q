@@ -4,9 +4,9 @@
 
 #include <stdint.h>
 
-#define W25Q_PAGE_SIZE				0x0100									/* 256 B */
-#define W25Q_SECTOR_SIZE			0x1000									/*	4KB */
-#define W25Q_BLOCK_SIZE				(W25Q_SECTOR_SIZE * 16)	/* 64KB */
+#define W25Q_PAGE_SIZE   0x0100                  /* 256 B */
+#define W25Q_SECTOR_SIZE 0x1000                  /*  4KB */
+#define W25Q_BLOCK_SIZE  (W25Q_SECTOR_SIZE * 16) /* 64KB */
 
 void W25Q_Init(void);
 uint32_t W25Q_ReadId(void);
