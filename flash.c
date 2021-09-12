@@ -38,7 +38,7 @@ void FLASH_ReadEntity(uint8_t* buffer, uint16_t fromSector, uint16_t toSector, u
 	{
 		size = FLASH_ReadWord(fromAddress);
 
-		if (size == 0xFFFF)
+		if (size == 0xFFFF || size == 0x0000)
 		{
 			if (lastSize == bytesToRead)
 			{
@@ -103,7 +103,7 @@ void FLASH_EraseWriteEntity(uint8_t* buffer, uint16_t fromSector, uint16_t toSec
 	{
 		size = FLASH_ReadWord(fromAddress);
 
-		if (size == 0xFFFF)
+		if (size == 0xFFFF || size == 0x0000)
 		{
 			break;
 		}
