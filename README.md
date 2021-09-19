@@ -1,3 +1,3 @@
-# w25q
+# STM32-W25Q
 
 W25Q SPI FLASH driver for STM32
