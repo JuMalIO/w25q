@@ -21,6 +21,8 @@
 #define W25Q_CS_LOW()  HAL_GPIO_WritePin(W25Q_CS_PORT, W25Q_CS_PIN, GPIO_PIN_RESET)
 #define W25Q_CS_HIGH() HAL_GPIO_WritePin(W25Q_CS_PORT, W25Q_CS_PIN, GPIO_PIN_SET)
 
+#define WAIT_WRITE_TIMEOUT 500
+
 extern SPI_HandleTypeDef W25Q_SPI;
 
 static uint16_t BlockCount;
@@ -71,11 +73,12 @@ void W25Q_WaitForWriteEnd(void)
 
 	W25Q_SPI_TransmitReceive(W25Q_CMD_RSR1);
 
+	uint32_t timeoutTick = HAL_GetTick() + WAIT_WRITE_TIMEOUT;
 	do
 	{
 		flashStatus = W25Q_SPI_TransmitReceive(W25Q_DUMMY_BYTE);
 	}
-	while (flashStatus & W25Q_WIP_FLAG);
+	while (flashStatus & W25Q_WIP_FLAG && timeoutTick > HAL_GetTick());
 
 	W25Q_CS_HIGH();
 }
